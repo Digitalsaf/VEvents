@@ -88,7 +88,7 @@ function renderEvents(fireBaseRecords) {
 
     // Card Body
     let createCardBody = document.createElement("div");
-    createCardBody.setAttribute("class", "card-body");
+    createCardBody.setAttribute("class", "card-body container");
     createCardBody.setAttribute("style", "width:40rem; color:red;");
 
     // Card Body Text and Votes
@@ -96,7 +96,7 @@ function renderEvents(fireBaseRecords) {
     let cardBodyDesc = document.createTextNode(evt.description);
     let cardBodyPic = document.createElement("img");
     cardBodyPic.setAttribute("src", evt.url);
-    cardBodyPic.setAttribute("style", 'height:300px; width:300px; float:right;');
+    cardBodyPic.setAttribute("style", 'height:300px; width:300px; margin-left:25%; margin-right:25%; margin-bottom:10px; display:block; border: 5px green double;');
     let cardBodyDate = document.createTextNode(evt.date);
     let cardBodyLoc = document.createTextNode(evt.location);
     let cardBodyUpVotes = document.createTextNode(evt.upvote);
@@ -104,6 +104,7 @@ function renderEvents(fireBaseRecords) {
     // Add text and votes to elements
 
     let descP = document.createElement("p");
+    descP.setAttribute('style','display:inline-block')
     let dateP = document.createElement("h7");
     let locP = document.createElement("div");
     let upVoteP = document.createElement("h5");
@@ -124,8 +125,8 @@ function renderEvents(fireBaseRecords) {
 
     // Add to Card body
     cardHeader.appendChild(cardBodyTitle);
-    createCardBody.appendChild(descP);
     createCardBody.appendChild(cardBodyPic);
+    createCardBody.appendChild(descP);
     createCardBody.appendChild(dateP);
     createCardBody.appendChild(locP);
     createCardBody.appendChild(upVoteP);
