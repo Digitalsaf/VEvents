@@ -75,7 +75,7 @@ function renderEvents(fireBaseRecords) {
     console.log("data:", record.data());
 
     let evt = record.data();
-    console.log(evt.title, evt.description, evt.date, evt.location, evt.img);
+    console.log(evt.title, evt.description, evt.date, evt.location, evt.url);
 
     // Card
     let createCard = document.createElement("div");
@@ -145,6 +145,28 @@ function renderEvents(fireBaseRecords) {
     }
   });
 }
+
+// text area counter
+
+var el;                                                    
+
+function countCharacters(e) {                                    
+  var textEntered, countRemaining, counter;          
+  textEntered = document.getElementById('validationCustom02').value;  
+  counter = (0 + (textEntered.length));
+  countRemaining = document.getElementById('chars'); 
+  countRemaining.textContent = counter;
+  
+  if (counter == 0)
+  {
+      countRemaining.setAttribute('style','opacity:0;')
+  }
+  else if (counter > 1){
+      countRemaining.setAttribute('style','opacity:0.5;')
+  }
+}
+el = document.getElementById('validationCustom02');                   
+el.addEventListener('keyup', countCharacters, false);
 
 /*let createCard = document.createElement('div')
   createCard.setAttribute('class', 'card');
