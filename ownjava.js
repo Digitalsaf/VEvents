@@ -98,27 +98,49 @@ function renderEvents(fireBaseRecords) {
 
     // Card Body Text and Votes
     let cardBodyTitle = document.createTextNode(evt.title); // This is the card header
+    let cardBodyDescH = document.createTextNode('Description');
     let cardBodyDesc = document.createTextNode(evt.description);
     let cardBodyPic = document.createElement("img");
     cardBodyPic.setAttribute("src", evt.url);
     cardBodyPic.setAttribute("style", 'height:300px; width:300px; margin-left:25%; margin-right:25%; margin-bottom:10px; display:block; border: 5px green double;');
+    let textDate = document.createTextNode("Date: ");
     let cardBodyDate = document.createTextNode(evt.date);
+    let textLoc = document.createTextNode("Location: ");
     let cardBodyLoc = document.createTextNode(evt.location);
+    let textVote = document.createTextNode('UpVotes: ')
     let cardBodyUpVotes = document.createTextNode(evt.upvote);
 
     // Add text and votes to elements
 
+    let descH = document.createElement('h5')
+    descH.setAttribute('style','color:lightsalmon; font-weight: bold; text-align: center')
     let descP = document.createElement("p");
     descP.setAttribute('style','display:inline-block margin:10px;font-style: italic;')
     let dateP = document.createElement("h7");
+    let dateN = document.createElement("h7");
+    dateN.setAttribute('style','color:Green; font-weight: bold')
     let locP = document.createElement("div");
-    let upVoteP = document.createElement("h5");
+    let locN = document.createElement('h7')
+    locN.setAttribute('style','color: blue; font-weight: bold')
+    let upVoteP = document.createElement("h6");
+    upVoteP.setAttribute('style','color:red; font-weight: bold')
+    let upVoteN = document.createElement("span");
+    //
+    upVoteN.setAttribute('class','badge badge-secondary')
     upVoteP.setAttribute('id','upVoteID')
-
+    //
+    descH.appendChild(cardBodyDescH)
+    descP.appendChild(descH)
     descP.appendChild(cardBodyDesc);
+    dateN.appendChild(textDate)
+    dateP.appendChild(dateN)
     dateP.appendChild(cardBodyDate);
+    locN.appendChild(textLoc)
+    locP.appendChild(locN)
     locP.appendChild(cardBodyLoc);
-    upVoteP.appendChild(cardBodyUpVotes);
+    upVoteP.appendChild(textVote)
+    upVoteP.appendChild(upVoteN)
+    upVoteN.appendChild(cardBodyUpVotes)
 
     // Card Button
     let cardBodyBut = document.createElement("button");
