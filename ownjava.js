@@ -43,6 +43,7 @@ form.addEventListener("submit", function (event) {
       });
     }
   );
+  register.reset()
  
 });
 console.log();
@@ -176,6 +177,20 @@ function countCharacters(e) {
 }
 el = document.getElementById('validationCustom02');                   
 el.addEventListener('keyup', countCharacters, false);
+
+// Filter Buttons
+
+function dateFunction() {
+    db.collection('Events').orderBy('date','desc').onSnapshot(renderEvents)
+}
+
+function ascFunction() {
+    db.collection('Events').orderBy('upvote','asc').onSnapshot(renderEvents)
+}
+
+function descFunction() {
+    db.collection('Events').orderBy('upvote','desc').onSnapshot(renderEvents)
+}
 
 
 
