@@ -1,5 +1,3 @@
-
-
 let form = document.getElementById("register");
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -65,17 +63,23 @@ firebase.initializeApp(firebaseConfig);
 
 let db = firebase.firestore();
 
-db.collection("Events").orderBy("date").onSnapshot(renderEvents);
+db.collection('Events').orderBy('upvote','desc').onSnapshot(renderEvents)
+
+
+
+
 
 function renderEvents(fireBaseRecords) {
   let boxEvent = document.getElementById("EventLog");
   boxEvent.innerHTML = "";
   fireBaseRecords.forEach((record) => {
+    
     console.log("id:", record.id);
     console.log("data:", record.data());
 
     let evt = record.data();
     console.log(evt.title, evt.description, evt.date, evt.location, evt.url);
+
 
     // Card
     let createCard = document.createElement("div");
@@ -89,7 +93,7 @@ function renderEvents(fireBaseRecords) {
     // Card Body
     let createCardBody = document.createElement("div");
     createCardBody.setAttribute("class", "card-body container");
-    createCardBody.setAttribute("style", "width:40rem; color:red;");
+    createCardBody.setAttribute("style", "width:40rem; font-family:Verdana;");
 
     // Card Body Text and Votes
     let cardBodyTitle = document.createTextNode(evt.title); // This is the card header
@@ -104,10 +108,11 @@ function renderEvents(fireBaseRecords) {
     // Add text and votes to elements
 
     let descP = document.createElement("p");
-    descP.setAttribute('style','display:inline-block')
+    descP.setAttribute('style','display:inline-block margin:10px;font-style: italic;')
     let dateP = document.createElement("h7");
     let locP = document.createElement("div");
     let upVoteP = document.createElement("h5");
+    upVoteP.setAttribute('id','upVoteID')
 
     descP.appendChild(cardBodyDesc);
     dateP.appendChild(cardBodyDate);
@@ -143,6 +148,10 @@ function renderEvents(fireBaseRecords) {
         .doc(event.target.id)
         .update({ upvote: Number(event.target.value) + 1 });
     }
+
+    
+
+
   });
 }
 
@@ -168,15 +177,8 @@ function countCharacters(e) {
 el = document.getElementById('validationCustom02');                   
 el.addEventListener('keyup', countCharacters, false);
 
-/*let createCard = document.createElement('div')
-  createCard.setAttribute('class', 'card');
-  let createCardBody = document.createElement('div')
-  let cardBodyText = document.createTextNode(record.id,record.data())
-  createCardBody.append(cardBodyText)
-  createCard.setAttribute('class', 'card-body');
-  createCard.appendChild(createCardBody)
-  
 
 
- document.body.appendChild(createCard);
- */
+
+
+
